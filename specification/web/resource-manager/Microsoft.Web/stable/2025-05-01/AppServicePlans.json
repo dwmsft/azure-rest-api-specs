@@ -366,6 +366,51 @@
         }
       }
     },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/getrdppassword": {
+      "post": {
+        "tags": [
+          "AppServicePlans"
+        ],
+        "summary": "Get the RDP password for a IsCustomMode ServerFarm",
+        "operationId": "AppServicePlans_GetServerFarmRdpPassword",
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Name of the App Service plan.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "schema": {
+              "$ref": "#/definitions/ServerFarmRdpDetails"
+            }
+          },
+          "404": {
+            "description": "Server farm not found.",
+            "x-ms-error-response": true
+          },
+          "default": {
+            "description": "App Service error response.",
+            "schema": {
+              "$ref": "./CommonDefinitions.json#/definitions/DefaultErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}": {
       "get": {
         "tags": [
@@ -675,6 +720,51 @@
         },
         "x-ms-pageable": {
           "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/instances": {
+      "get": {
+        "tags": [
+          "AppServicePlans"
+        ],
+        "summary": "Get the instance details for a server farm.",
+        "operationId": "AppServicePlans_GetServerFarmInstanceDetails",
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Name of the App Service plan.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "schema": {
+              "$ref": "#/definitions/ServerFarmInstanceDetails"
+            }
+          },
+          "404": {
+            "description": "Server farm not found.",
+            "x-ms-error-response": true
+          },
+          "default": {
+            "description": "App Service error response.",
+            "schema": {
+              "$ref": "./CommonDefinitions.json#/definitions/DefaultErrorResponse"
+            }
+          }
         }
       }
     },
@@ -1455,6 +1545,54 @@
           }
         }
       }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/workers/{workerName}/recycleinstance": {
+      "post": {
+        "tags": [
+          "AppServicePlans"
+        ],
+        "summary": "Reboot a mavic instance.",
+        "operationId": "AppServicePlans_RebootMavicInstance",
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Name of the App Service plan.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workerName",
+            "in": "path",
+            "description": "Name of worker machine, which typically starts with RD.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "./CommonDefinitions.json#/definitions/Operation"
+            }
+          },
+          "default": {
+            "description": "App Service error response.",
+            "schema": {
+              "$ref": "./CommonDefinitions.json#/definitions/DefaultErrorResponse"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -1722,6 +1860,73 @@
           "description": "Link to next page of resources.",
           "type": "string",
           "readOnly": true
+        }
+      }
+    },
+    "ServerFarmInstance": {
+      "description": "Represents details of a single instance in a server farm.",
+      "type": "object",
+      "properties": {
+        "instanceName": {
+          "description": "Gets or sets the instance name.",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "Gets or sets the instance IP address.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Gets or sets the instance status.",
+          "type": "string"
+        }
+      }
+    },
+    "ServerFarmInstanceDetails": {
+      "description": "Represents instance details for a server farm.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "./CommonDefinitions.json#/definitions/ProxyOnlyResource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "description": "ServerFarmInstanceDetails resource specific properties",
+          "type": "object",
+          "properties": {
+            "serverFarmName": {
+              "description": "Gets or sets the server farm name.",
+              "type": "string"
+            },
+            "instances": {
+              "description": "Gets or sets the list of server farm instances.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ServerFarmInstance"
+              }
+            },
+            "instanceCount": {
+              "format": "int32",
+              "description": "Gets or sets the total number of instances.",
+              "type": "integer"
+            }
+          },
+          "x-ms-client-flatten": true
+        }
+      }
+    },
+    "ServerFarmRdpDetails": {
+      "description": "Server Farm RDP connection details.",
+      "type": "object",
+      "properties": {
+        "rdpPassword": {
+          "description": "Gets or sets the RDP password for the server farm.",
+          "type": "string"
+        },
+        "rdpPasswordExpiry": {
+          "format": "date-time",
+          "description": "Gets or sets the RDP password expiry date.",
+          "type": "string"
         }
       }
     }
