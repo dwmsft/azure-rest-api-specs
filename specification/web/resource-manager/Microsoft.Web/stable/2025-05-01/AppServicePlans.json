@@ -371,7 +371,7 @@
         "tags": [
           "AppServicePlans"
         ],
-        "summary": "Get the RDP password for a IsCustomMode ServerFarm",
+        "summary": "Get the RDP password for an IsCustomMode ServerFarm.",
         "operationId": "AppServicePlans_GetServerFarmRdpPassword",
         "parameters": [
           {
@@ -728,7 +728,7 @@
         "tags": [
           "AppServicePlans"
         ],
-        "summary": "Get the instance details for a server farm.",
+        "summary": "Get the instance details for an app service plan.",
         "operationId": "AppServicePlans_GetServerFarmInstanceDetails",
         "parameters": [
           {
@@ -1522,7 +1522,7 @@
           {
             "name": "workerName",
             "in": "path",
-            "description": "Name of worker machine, which typically starts with RD.",
+            "description": "Name of worker machine.",
             "required": true,
             "type": "string"
           },
@@ -1551,7 +1551,7 @@
         "tags": [
           "AppServicePlans"
         ],
-        "summary": "Reboot a mavic instance.",
+        "summary": "Recycles a managed instance worker machine.",
         "operationId": "AppServicePlans_RebootMavicInstance",
         "parameters": [
           {
@@ -1567,7 +1567,7 @@
           {
             "name": "workerName",
             "in": "path",
-            "description": "Name of worker machine, which typically starts with RD.",
+            "description": "Name of worker machine.",
             "required": true,
             "type": "string"
           },
@@ -1868,21 +1868,21 @@
       "type": "object",
       "properties": {
         "instanceName": {
-          "description": "Gets or sets the instance name.",
+          "description": "The instance name.",
           "type": "string"
         },
         "ipAddress": {
-          "description": "Gets or sets the instance IP address.",
+          "description": "The instance IP address.",
           "type": "string"
         },
         "status": {
-          "description": "Gets or sets the instance status.",
+          "description": "The instance status.",
           "type": "string"
         }
       }
     },
     "ServerFarmInstanceDetails": {
-      "description": "Represents instance details for a server farm.",
+      "description": "Represents instance details for an app service plan.",
       "type": "object",
       "allOf": [
         {
@@ -1895,11 +1895,11 @@
           "type": "object",
           "properties": {
             "serverFarmName": {
-              "description": "Gets or sets the server farm name.",
+              "description": "The server farm name.",
               "type": "string"
             },
             "instances": {
-              "description": "Gets or sets the list of server farm instances.",
+              "description": "The list of server farm instances.",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/ServerFarmInstance"
@@ -1907,7 +1907,7 @@
             },
             "instanceCount": {
               "format": "int32",
-              "description": "Gets or sets the total number of instances.",
+              "description": "The total number of instances.",
               "type": "integer"
             }
           },
@@ -1920,12 +1920,12 @@
       "type": "object",
       "properties": {
         "rdpPassword": {
-          "description": "Gets or sets the RDP password for the server farm.",
+          "description": "The RDP password for the server farm.",
           "type": "string"
         },
         "rdpPasswordExpiry": {
           "format": "date-time",
-          "description": "Gets or sets the RDP password expiry date.",
+          "description": "The RDP password expiry date.",
           "type": "string"
         }
       }

@@ -2330,7 +2330,7 @@
       }
     },
     "InstallScriptSource": {
-      "description": "Object to hold install script reference",
+      "description": "Object to hold install script reference.",
       "type": "object",
       "properties": {
         "sourceUri": {
@@ -2339,7 +2339,15 @@
         },
         "type": {
           "description": "Type of the install script.",
-          "type": "string"
+          "enum": [
+            "RemoteAzureBlob",
+            "PlatformStorage"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "InstallScriptType",
+            "modelAsString": true
+          }
         }
       }
     },
@@ -2425,7 +2433,7 @@
       }
     },
     "KeyVaultReferenceWithStatus": {
-      "description": "Onject to hold keyvault reference and and the resolution status",
+      "description": "Object to hold key vault reference and the resolution status",
       "type": "object",
       "properties": {
         "secretUri": {
@@ -3000,7 +3008,19 @@
         },
         "type": {
           "description": "Type of the registry adapter.",
-          "type": "string"
+          "enum": [
+            "Binary",
+            "String",
+            "Expand_String",
+            "Multi_String",
+            "DWord",
+            "QWord"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "RegistryAdapterType",
+            "modelAsString": true
+          }
         },
         "keyVaultSecretReference": {
           "$ref": "#/definitions/KeyVaultReferenceWithStatus",
@@ -4401,7 +4421,7 @@
       }
     },
     "ServerFarmNetworkSettings": {
-      "description": "Network settings for a server farm (App Service plan).",
+      "description": "Network settings for an app service plan.",
       "type": "object",
       "properties": {
         "virtualNetworkSubnetId": {
@@ -4690,7 +4710,16 @@
         },
         "type": {
           "description": "Type of the storage mount.",
-          "type": "string"
+          "enum": [
+            "AzureFiles",
+            "LocalStorage",
+            "FileShare"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "StorageMountType",
+            "modelAsString": true
+          }
         },
         "source": {
           "description": "Source of the fileshare/storage.",
