@@ -2437,11 +2437,11 @@
       "type": "object",
       "properties": {
         "secretUri": {
-          "description": "Key vault secret URI for the registry adapter.",
+          "description": "Key vault secret URI.",
           "type": "string"
         },
         "referenceStatus": {
-          "description": "Reference status of the registry adapter.",
+          "description": "Reference status of the key vault secret.",
           "type": "string"
         }
       }
