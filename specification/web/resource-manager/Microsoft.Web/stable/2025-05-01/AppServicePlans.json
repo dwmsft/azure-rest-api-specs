@@ -1585,6 +1585,10 @@
               "$ref": "./CommonDefinitions.json#/definitions/Operation"
             }
           },
+          "404": {
+            "description": "Server farm not found.",
+            "x-ms-error-response": true
+          },
           "default": {
             "description": "App Service error response.",
             "schema": {
