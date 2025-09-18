@@ -97,7 +97,8 @@
             "applicationTraffic": false,
             "contentShareTraffic": false,
             "imagePullTraffic": false,
-            "backupRestoreTraffic": false
+            "backupRestoreTraffic": false,
+            "managedIdentityTraffic": false
           },
           "siteConfig": {
             "numberOfWorkers": 1,
@@ -253,7 +254,8 @@
             "applicationTraffic": false,
             "contentShareTraffic": false,
             "imagePullTraffic": false,
-            "backupRestoreTraffic": false
+            "backupRestoreTraffic": false,
+            "managedIdentityTraffic": false
           },
           "siteConfig": {
             "numberOfWorkers": 1,

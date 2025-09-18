@@ -4277,6 +4277,10 @@
         "backupRestoreTraffic": {
           "description": "Enables Backup and Restore operations over virtual network. Previously called VnetBackupRestoreEnabled",
           "type": "boolean"
+        },
+        "managedIdentityTraffic": {
+          "description": "Enables Managed Identity operations over virtual network.",
+          "type": "boolean"
         }
       }
     },
